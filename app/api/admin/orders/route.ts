@@ -20,7 +20,14 @@ export async function GET(req: Request) {
     // 1) 取订单（活跃状态）
     const { data: orders, error: oerr } = await supabaseAdmin
       .from("orders")
-      .select("id, table_id, created_at, status, total, dining_tables(name)")
+      .select(`
+        id, 
+        table_id, 
+        created_at, 
+        status, 
+        total, 
+        dining_tables!inner(name)
+      `)
       .in("status", ["placed", "preparing", "ready"])
       .order("created_at", { ascending: true });
 
@@ -51,14 +58,19 @@ export async function GET(req: Request) {
       itemsByOrder.set(it.order_id, arr);
     });
 
-    const result = (orders as Order[] ?? []).map((o) => ({
-      id: o.id,
-      tableName: o.dining_tables[0]?.name ?? "-",
-      createdAt: o.created_at,
-      status: o.status as "placed" | "preparing" | "ready",
-      total: o.total,
-      items: itemsByOrder.get(o.id) ?? [],
-    }));
+    const result = (orders as Order[] ?? []).map((o) => {
+      const tableName = Array.isArray(o.dining_tables) 
+        ? o.dining_tables[0]?.name 
+        : (o.dining_tables as any)?.name;
+      return {
+        id: o.id,
+        tableName: tableName ?? "-",
+        createdAt: o.created_at,
+        status: o.status as "placed" | "preparing" | "ready",
+        total: o.total,
+        items: itemsByOrder.get(o.id) ?? [],
+      };
+    });
 
     return NextResponse.json({ orders: result });
   } catch (e: any) {

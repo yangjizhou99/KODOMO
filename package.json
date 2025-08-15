@@ -9,6 +9,7 @@
     "@types/node": "^24.2.1",
     "@types/react": "^19.1.10",
     "@types/react-dom": "^19.1.7",
+    "dotenv": "^17.2.1",
     "next": "^15.4.6",
     "qrcode": "^1.5.4",
     "react": "^19.1.1",
