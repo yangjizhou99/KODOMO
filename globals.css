@@ -1,0 +1,45 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* === BBA 主题变量（可直接替换/粘贴）=== */
+:root {
+  /* Sunny Tomato */
+  --brand: #ff5a3c;        /* tomato 主色 */
+  --brand-2: #ffd166;      /* sunny 辅色 */
+  --bg: #fff8f4;           /* 温暖底色 */
+  --text: #1f2937;         /* 灰黑正文 */
+  --muted: #6b7280;        /* 次级文字 */
+  --success: #16a34a;      /* 成功 */
+  --danger: #dc2626;       /* 错误/售罄 */
+  --card: #ffffff;         /* 卡片底色 */
+  --border: #f1f5f9;       /* 分隔线 */
+
+  --radius: 12px;          /* 统一圆角 */
+
+  /* —— 兼容 shadcn/ui 的设计令牌（强烈建议保留）—— */
+  --background: var(--bg);
+  --foreground: var(--text);
+  --primary: var(--brand);
+  --primary-foreground: #ffffff;
+  --secondary: var(--brand-2);
+  --secondary-foreground: #1f2937;
+  --muted-foreground: var(--muted);
+  --card-foreground: var(--text);
+  --border-color: var(--border);
+}
+
+/* 基础排版与背景 */
+html, body {
+  font-family: "Noto Sans TC", "Inter", system-ui, -apple-system, "Segoe UI",
+               Roboto, "Helvetica Neue", Arial, "Apple Color Emoji","Segoe UI Emoji";
+  background: var(--bg);
+  color: var(--text);
+}
+
+/* 便捷类（可选） */
+.button-primary {
+  background: var(--brand);
+  color: white;
+  border-radius: var(--radius);
+}

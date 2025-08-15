@@ -1,0 +1,30 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --brand: #ff6b6b;
+  --text: #333333;
+  --muted: #666666;
+  --border: #e0e0e0;
+  --danger: #ff4757;
+  --card: #ffffff;
+}
+
+body {
+  font-family: 'Inter', 'Noto Sans TC', sans-serif;
+  color: var(--text);
+  background-color: #f8f8f8;
+}
+
+.button-primary {
+  background-color: var(--brand);
+  color: white;
+  border-radius: 8px;
+  padding: 0.5rem 1rem;
+  transition: all 0.2s;
+}
+
+.button-primary:hover {
+  opacity: 0.9;
+}
